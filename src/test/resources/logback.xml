@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STATIC" class="hibernate.traps.SQLStatementLoggingAppender">
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.jdbcdslog.StatementLogger">
+        <level value="trace" />
+        <appender-ref ref="STATIC" />
+    </logger>
+
+</configuration>
