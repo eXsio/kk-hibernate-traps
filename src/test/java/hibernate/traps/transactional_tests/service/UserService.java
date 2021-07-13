@@ -37,12 +37,7 @@ public class UserService {
                 .setParameter("name", name)
                 .getResultList()
                 .stream()
-                .findFirst()
-                .map(u -> {
-                    // ensure no lazy loading
-                    entityManager.detach(u);
-                    return u;
-                });
+                .findFirst();
     }
 
     public void printUser(User u) {
