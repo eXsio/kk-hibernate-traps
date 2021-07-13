@@ -1,8 +1,14 @@
 package hibernate.traps.transactional_tests.model;
 
-import org.assertj.core.util.Sets;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +24,7 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Address> addresses = Sets.newHashSet();
+    private Set<Address> addresses = new HashSet<>();
 
     public User() {
     }

@@ -1,5 +1,6 @@
 package hibernate.traps.transactional_tests.service;
 
+import com.google.gson.Gson;
 import hibernate.traps.transactional_tests.dto.UserDto;
 import hibernate.traps.transactional_tests.model.Address;
 import hibernate.traps.transactional_tests.model.User;
@@ -17,30 +18,17 @@ public class UserService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
-    public void createUserInPropagatedTransaction(UserDto userDto) {
+    public void createUser(UserDto userDto) {
         User u = new User(userDto.getName());
         userDto.getAddresses().forEach(a -> u.addAddress(new Address(a)));
         entityManager.persist(u);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void createUserInExplicitlyNewTransaction(UserDto userDto) {
-        User u = new User(userDto.getName());
-        userDto.getAddresses().forEach(a -> u.addAddress(new Address(a)));
-        entityManager.persist(u);
-    }
-
-    @Transactional(readOnly = true)
     public Optional<User> getUserByName(String name) {
         return entityManager.createQuery("from User u where u.name = :name", User.class)
                 .setParameter("name", name)
                 .getResultList()
                 .stream()
                 .findFirst();
-    }
-
-    public void printUser(User u) {
-        System.out.println(String.format("User %s with id %d has %d addresses.", u.getName(), u.getId(), u.getAddresses().size()));
     }
 }

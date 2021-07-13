@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("hibernate.traps.transactional_tests.service")
+@ComponentScan("hibernate.traps.transactional_tests")
 @EnableTransactionManagement
 public class TransactionalTestsConfig {
 
