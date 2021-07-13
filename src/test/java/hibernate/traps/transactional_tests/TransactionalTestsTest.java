@@ -3,6 +3,7 @@ package hibernate.traps.transactional_tests;
 import com.google.gson.Gson;
 import hibernate.traps.transactional_tests.config.TransactionalTestsConfig;
 import hibernate.traps.transactional_tests.dto.UserDto;
+import hibernate.traps.transactional_tests.util.TestDatabaseUtil;
 import org.assertj.core.util.Lists;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Test;
@@ -78,6 +79,8 @@ public class TransactionalTestsTest {
         assertEquals(500, createdUserResponse.getResponse().getStatus());
         assertEquals(LazyInitializationException.class, createdUserResponse.getResolvedException().getClass());
 
+        //CLEANUP: we can't rely on Spring to roll back our test, we need to cleanup the Test Database manually
+        TestDatabaseUtil.resetDatabase(dataSource);
     }
 
     private void createNewUser(UserDto user) throws Exception {
