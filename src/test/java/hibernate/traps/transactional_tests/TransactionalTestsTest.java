@@ -51,7 +51,7 @@ public class TransactionalTestsTest {
         //GIVEN: There is a User created
         createNewUser(getNewUser());
 
-        //WHEN: unlike in production code, no exception is thrown when trying to access lazy-initialized properties
+        //WHEN: we try to fetch the User by name, including its lazy-loaded properties
         MvcResult createdUserResponse = getUserByName(USER_NAME);
 
         //THEN: user is correctly fetched
@@ -71,10 +71,10 @@ public class TransactionalTestsTest {
         //GIVEN: There is a User created
         createNewUser(getNewUser());
 
-        //WHEN: unlike in production code, no exception is thrown when trying to access lazy-initialized properties
+        //WHEN: we try to fetch the User by name, including its lazy-loaded properties
         MvcResult createdUserResponse = getUserByName(USER_NAME);
 
-        //THEN: user is correctly fetched
+        //THEN: just like in production code, an exception is thrown when trying to access lazy-initialized properties
         assertEquals(500, createdUserResponse.getResponse().getStatus());
         assertEquals(LazyInitializationException.class, createdUserResponse.getResolvedException().getClass());
 
