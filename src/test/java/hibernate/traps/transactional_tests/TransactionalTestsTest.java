@@ -40,12 +40,6 @@ public class TransactionalTestsTest {
     @Autowired
     private DataSource dataSource;
 
-    /*
-     * This test IS Transactional AND calls methods that use Transactions propagated from the caller.
-     * This kind of testing seems to be the most convenient, because each test is automatically rolled back by Spring
-     * and we don't need to worry about polluting test database with data from other tests. This however comes with
-     * a very serious cost of not being able to test the actual Production-like Transaction propagation.
-     */
     @Test
     @Transactional
     public void webIntegrationTestWithNotActualProductionTransactionScope() throws Exception {
@@ -62,11 +56,6 @@ public class TransactionalTestsTest {
         assertEquals(2, createdUser.getAddresses().size());
     }
 
-    /*
-     * This test IS NOT Transactional and calls methods that use Transactions propagated from the caller.
-     * This kind of testing requires a little more work on our side as we need to manually clean up the database after
-     * the test is finished. It rewards us though with the ability to test the actual Production-like Transaction propagation
-     */
     @Test
     public void webIntegrationTestWithActualProductionTransactionScope() throws Exception {
         //GIVEN: There is a User created
