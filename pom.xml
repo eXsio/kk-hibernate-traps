@@ -21,9 +21,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.usc</groupId>
-            <artifactId>jdbcdslog</artifactId>
-            <version>1.0.6.2</version>
+            <groupId>org.jdbcdslog</groupId>
+            <artifactId>jdbcdslogexp2</artifactId>
+            <version>2.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
