@@ -43,7 +43,7 @@ public class MergeVsUpdateTest {
         });
 
         //THEN: 1 Select + 1 Update are executed against Database
-        SQLStatementLoggingAppender.printAll();
+        SQLStatementLoggingAppender.printQueriesContaining("execute");
         assertEquals(2, SQLStatementLoggingAppender.countQueriesContaining("execute"));
     }
 
@@ -59,7 +59,7 @@ public class MergeVsUpdateTest {
         });
 
         //THEN: 1000 Selects + 1 Update are executed against Database
-        SQLStatementLoggingAppender.printAll();
+        SQLStatementLoggingAppender.printQueriesContaining("execute");
         assertEquals(1001, SQLStatementLoggingAppender.countQueriesContaining("execute"));
     }
 
@@ -75,7 +75,7 @@ public class MergeVsUpdateTest {
         });
 
         //THEN: only one Update Statement is executed against Database
-        SQLStatementLoggingAppender.printAll();
+        SQLStatementLoggingAppender.printQueriesContaining("execute");
         assertEquals(1, SQLStatementLoggingAppender.countQueriesContaining("execute"));
     }
 
@@ -91,7 +91,7 @@ public class MergeVsUpdateTest {
         });
 
         //THEN: only one Update Statement is executed against Database
-        SQLStatementLoggingAppender.printAll();
+        SQLStatementLoggingAppender.printQueriesContaining("execute");
         assertEquals(1, SQLStatementLoggingAppender.countQueriesContaining("execute"));
     }
 
